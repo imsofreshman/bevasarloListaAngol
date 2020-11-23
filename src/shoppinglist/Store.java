@@ -2,7 +2,6 @@ package shoppinglist;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -86,30 +85,40 @@ public class Store {
         sb.append(" áruházban lévő \n");
 
         if (!electronics.isEmpty()) {
+            Collections.sort(electronics,
+                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
             sb.append("Elektronikai cikkek:\n");
             for (Product product : electronics) {
                 sb.append(product);
             }
         }
         if (!meats.isEmpty()) {
+            Collections.sort(meats,
+                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
             sb.append("Húsok:\n");
             for (Product product : meats) {
                 sb.append(product);
             }
         }
         if (!drinks.isEmpty()) {
+            Collections.sort(drinks,
+                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
             sb.append("Italok:\n");
             for (Product product : drinks) {
                 sb.append(product);
             }
         }
         if (!bakedGoods.isEmpty()) {
+            Collections.sort(bakedGoods,
+                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
             sb.append("Pékáruk:\n");
             for (Product product : bakedGoods) {
                 sb.append(product);
             }
         }
         if (!fruits.isEmpty()) {
+            Collections.sort(fruits,
+                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
             sb.append("Gyümölcsök:\n");
             for (Product product : fruits) {
                 sb.append(product);
