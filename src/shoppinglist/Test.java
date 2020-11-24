@@ -24,7 +24,7 @@ public class Test {
         Food pizza = new Food(Taste.Salty, "Pizza", 2100, StoreSections.BakedGoods);
         Food kenyer = new Food(Taste.Salty, "Kenyér", 189, StoreSections.BakedGoods);
         Food korte = new Food(Taste.Salty, "Körte", 4, StoreSections.Fruits);
-        Food banan = new Food(Taste.Salty, "Banán", 37, StoreSections.Fruits);
+        Food banan = new Food(Taste.Sweet, "Banán", 37, StoreSections.Fruits);
 
         //Elektornikai cikkek
         LastingItem playStation = new LastingItem("Sony", 4, "Playstation", 300000, StoreSections.Electronics);
@@ -40,15 +40,15 @@ public class Test {
         Store abc = new Store("ABC", "Új utca 1");
 
         //Termékek feltöltése
-        tesco.addProduct(syrup);
         tesco.addProduct(vodka);
+        tesco.addProduct(syrup);
         tesco.addProduct(perec);
-        tesco.addProduct(szalami);
+        tesco.addProduct(milk);
         tesco.addProduct(playStation);
         tesco.addProduct(korte);
         tesco.addProduct(banan);
 
-        auchan.addProduct(milk);
+        auchan.addProduct(szalami);
         auchan.addProduct(pizza);
         auchan.addProduct(hangfal);
         auchan.addProduct(kompot);
@@ -64,16 +64,23 @@ public class Test {
         abc.addProduct(porkolt);
         abc.addProduct(kenyer);
 
+        System.out.println("Bevásáló Lista program!");
+        System.out.println("*************************\n");
+
         System.out.println(tesco.sortByStoreSections());
-        System.out.println("Összesen " + tesco.sumOfProductPrices() + "Ft");
-        System.out.println("\n--------------------");
+         System.out.println(tesco.listAlcoholDrinks());
+
+        System.out.println("--------------------");
         System.out.println(auchan.sortByStoreSections());
-        System.out.println("Összesen " + auchan.sumOfProductPrices() + "Ft");
-        System.out.println("\n--------------------");
+         System.out.println(auchan.listAlcoholDrinks());
+
+        System.out.println("--------------------");
         System.out.println(mediaMarkt.sortByStoreSections());
-        System.out.println("Összesen " + mediaMarkt.sumOfProductPrices() + "Ft");
-        System.out.println("\n--------------------");
+         System.out.println(mediaMarkt.listAlcoholDrinks());
+
+        System.out.println("--------------------");
         System.out.println(abc.sortByStoreSections());
-        System.out.println("Összesen " + abc.sumOfProductPrices() + "Ft");
+        System.out.println(abc.listAlcoholDrinks());
+
     }
 }

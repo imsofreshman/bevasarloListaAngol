@@ -31,4 +31,14 @@ public class LastingItem extends Product {
         this.warranteeTimeInYears = warranteeTimeInYears;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("A termék neve: " + getName());
+        sb.append(", a termék gyártója: " + getManufacturer());
+        sb.append(", a termék garanciája: " + getWarranteeTimeInYears() + " év");
+        sb.append(", ára: " + getPrice() + " FT \n");
+        return sb.toString();
+    }
+
 }

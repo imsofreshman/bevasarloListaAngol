@@ -21,4 +21,13 @@ public class Food extends Product {
         this.taste = taste;
     }
 
+     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("A termék neve: " + getName());
+        sb.append(", a termék típusa: " + getTaste().toString());
+        sb.append(", ára: " + getPrice() + " FT \n");
+        return sb.toString();
+    }
+
 }

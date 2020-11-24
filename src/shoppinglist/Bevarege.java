@@ -15,7 +15,6 @@ public class Bevarege extends Product {
         this.percentOfAlcohol = percentOfAlcohol;
     }
 
-    
     public String getBrand() {
         return brand;
     }
@@ -30,6 +29,16 @@ public class Bevarege extends Product {
 
     public void setPercentOfAlcohol(float percentOfAlcohol) {
         this.percentOfAlcohol = percentOfAlcohol;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("A termék neve: " + getName());
+        sb.append(", a termék márkája: " + getBrand());
+        sb.append(", a termék alkohol tartalma: " + getPercentOfAlcohol() + "%");
+        sb.append(", ára: " + getPrice() + " FT \n");
+        return sb.toString();
     }
 
 }

@@ -4,7 +4,7 @@ package shoppinglist;
  *
  * @author Pálfi Ádám - LRWQPG
  */
-public class Product implements Comparable<Product> {
+public class Product {
 
     private String name;
     private int price;
@@ -44,12 +44,9 @@ public class Product implements Comparable<Product> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("A termék neve: " + getName());
-        sb.append(" ára: " + getPrice() + " FT \n");
+        sb.append(" ára: " + getPrice() + " FT");
         return sb.toString();
     }
 
-    @Override
-    public int compareTo(Product product) {
-        return product.getName().compareTo(product.getName());
-    }
+    
 }

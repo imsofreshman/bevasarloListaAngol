@@ -51,9 +51,9 @@ public class Store {
         listOfProducts.remove(product);
     }
 
-    int sumOfProductPrices() {    //az összegzett árat lehet vele lekérdezni
+    int sumOfProductPrices(List<Product> productList) {    //az összegzett árat lehet vele lekérdezni
         int price = 0;
-        for (Product product : listOfProducts) {
+        for (Product product : productList) {
             price += product.getPrice();
         }
         return price;
@@ -67,12 +67,11 @@ public class Store {
             if (product.getStoreSection() == storeSection) {
                 listByStoreSection.add(product);
             }
-
         }
         return listByStoreSection;
     }
 
-    String sortByStoreSections() { // string bejárás
+    String sortByStoreSections() { // string bejárás()
         StringBuilder sb = new StringBuilder();
 
         List<Product> electronics = listByStoreSections(StoreSections.Electronics);
@@ -82,47 +81,62 @@ public class Store {
         List<Product> fruits = listByStoreSections(StoreSections.Fruits);
 
         sb.append("A " + getName());
-        sb.append(" áruházban lévő \n");
+        sb.append(" áruházban lévő termékek rendezetten \n");
 
         if (!electronics.isEmpty()) {
             Collections.sort(electronics,
-                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
+                    (product1, product2) -> product1.getName().compareTo(product2.getName()));
             sb.append("Elektronikai cikkek:\n");
             for (Product product : electronics) {
                 sb.append(product);
+
             }
+            sb.append("Az elektronikai termékek össz. ára: ");
+            sb.append(sumOfProductPrices(electronics) + "Ft\n");
         }
         if (!meats.isEmpty()) {
             Collections.sort(meats,
-                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
+                    (product1, product2) -> product1.getName().compareTo(product2.getName()));
             sb.append("Húsok:\n");
             for (Product product : meats) {
                 sb.append(product);
+
             }
+            sb.append("A húsok össz. ára: ");
+            sb.append(sumOfProductPrices(meats) + "Ft\n");
         }
         if (!drinks.isEmpty()) {
             Collections.sort(drinks,
-                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
+                    (product1, product2) -> product1.getName().compareTo(product2.getName()));
             sb.append("Italok:\n");
             for (Product product : drinks) {
                 sb.append(product);
+
             }
+            sb.append("Az italok össz. ára: ");
+            sb.append(sumOfProductPrices(drinks) + "Ft\n");
         }
         if (!bakedGoods.isEmpty()) {
             Collections.sort(bakedGoods,
-                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
+                    (product1, product2) -> product1.getName().compareTo(product2.getName()));
             sb.append("Pékáruk:\n");
             for (Product product : bakedGoods) {
                 sb.append(product);
+
             }
+            sb.append("A pékárúk össz. ára: ");
+            sb.append(sumOfProductPrices(bakedGoods) + "Ft\n");
         }
         if (!fruits.isEmpty()) {
             Collections.sort(fruits,
-                    (o1, o2) -> o1.getName().compareTo(o2.getName()));
+                    (product1, product2) -> product1.getName().compareTo(product2.getName()));
             sb.append("Gyümölcsök:\n");
             for (Product product : fruits) {
                 sb.append(product);
+
             }
+            sb.append("A gyümölcsök össz. ára: ");
+            sb.append(sumOfProductPrices(fruits) + "Ft\n");
         }
 
         return sb.toString();
@@ -136,18 +150,40 @@ public class Store {
         for (Product product : listOfProducts) {
             if (product.getName().substring(0).toString() == what) {
                 searchedProducts.add(product);
+            } else {
+                System.out.println("Nem szerepel a listán");
             }
         }
         return searchedProducts;
     }
 
+    String listAlcoholDrinks() {//Listázza az alkohol tartalmú italokat
+        StringBuilder sb = new StringBuilder();
+        List<Bevarege> listOfAlcoholProducts = new ArrayList();
+        listOfAlcoholProducts = listByStoreSections(StoreSections.Drinks);
+
+        sb.append("Alkohol tartalmu italok a " + getName() + " áruházban:\n");
+        for (Bevarege bevarage : listOfAlcoholProducts) {
+            if (bevarage.getPercentOfAlcohol() > 0) {
+                sb.append(bevarage);
+            }
+        }
+        if (listOfAlcoholProducts.isEmpty()) {
+            sb.replace(0, sb.length(), "Nincsenek alkholos italok!\n");
+        }
+        return sb.toString();
+
+    }
+
     @Override
     public String toString() { //kiirja a boltban tárolt összes vásárolni kivánt terméket
-        String results = "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("A " + getName() + " áruhzában lévő összes termék\n");
         for (Product product : listOfProducts) {
-            results += product.toString() + "\n";
+            sb.append(product.toString());
+
         }
-        return results;
+        return sb.toString();
     }
 
 }
